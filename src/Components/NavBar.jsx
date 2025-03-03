@@ -102,7 +102,7 @@ function NavBar() {
 
       {/* Mobile Sidebar */}
       <div
-        className={`fixed z-50 top-0 left-0 h-full w-64 bg-white shadow-lg transform ${menuOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed z-50 top-0 left-0 h-full w-[250px] bg-white shadow-lg transform ${menuOpen ? "translate-x-0" : "-translate-x-full"
           } transition-transform duration-300 ease-in-out md:hidden`}
       >
         <div className="flex justify-between items-center p-4 border-b">

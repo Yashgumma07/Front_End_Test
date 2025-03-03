@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 
 function Filters({
   salaryMin,
@@ -14,6 +14,7 @@ function Filters({
   experience,
   setExperience,
   fetchSearchData,
+  setPopups,
 }) {
 
   const handleSubmit = async (e) => {
@@ -23,8 +24,8 @@ function Filters({
 
   return (
     <div className="min-h-screen">
-      <div className="w-[335px] h-full">
-        <div className="flex justify-between py-6">
+      <div className="md:w-[335px] w-[250px] h-full">
+        <div className="flex justify-between mt-10 md:mt-0 py-6">
           <h3 className="text-2xl font-bold">Filters</h3>
           <p
             className="font-medium text-gray-400 clearBtn"
@@ -40,7 +41,7 @@ function Filters({
             Clear all
           </p>
         </div>
-        <div className="w-[335px] bg-slate-200 h-[500px] rounded-lg py-10 px-9">
+        <div className="md:w-[335px] w-[250px] bg-slate-200 h-[400px] md:h-[500px] rounded-lg py-5 px-2 md:px-9">
           <div className="relative h-full overflow-y-auto scroll-none">
             <form>
               {/* Salary Range */}
@@ -182,7 +183,7 @@ function Filters({
                 <button
                   type="button"
                   className="contactBtn py-2 px-4 bg-blue-600 text-white rounded-md"
-                  onClick={fetchSearchData}
+                  onClick={()=>{fetchSearchData(); setPopups(false)}}
                 >
                   Apply
                 </button>

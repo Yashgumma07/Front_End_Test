@@ -7,6 +7,7 @@ import applicantsImg from '../images/applicants.png';
 import JobPopUp from './JobPopUp';
 import { getId,setTotalJobs,setTotalAppliedJobs } from '../store/userStore';
 import { FaCircleCheck } from "react-icons/fa6";
+import { FaFilter } from "react-icons/fa6";
 
 
 
@@ -22,6 +23,9 @@ function Jobs({ popup, setPopup, setApplicationId }) {
   const [jobMode, setJobMode] = useState(['All']);
   const [roleType, setRoleType] = useState('');
   const [experience, setExperience] = useState('');
+
+  const [miniFilter, setMiniFilter] = useState(false);
+  const [popups, setPopups] = useState(false);
 
   const [details, setDetails] = useState(null);
 
@@ -108,9 +112,48 @@ function Jobs({ popup, setPopup, setApplicationId }) {
     fetchSearchData();
   }, []);
 
+  const handleClickOutside = (e) => {
+  if (e.target.id === "popup-overlay") {
+    setPopups(false);
+  }
+};
+
   return (
-    <div className="overflow-hidden h-[750px] lg:h-[600px]">
-      <div className="flex md:mx-[10%] mx-[0%] mt-[10px]">
+    <div className="overflow-hidden h-[750px] lg:h-[600px]" >
+      <div className="block md:hidden">
+        {popups && (
+          <div
+            id="popup-overlay"
+            className="z-30 fixed h-[800px] w-[395px] bg-black bg-opacity-50 flex justify-center items-center"
+            onClick={handleClickOutside}
+          >
+            <div className="bg-white p-6 rounded-lg shadow-lg h-[580px] w-[75%] max-w-md relative">
+              <Filters 
+              salaryMin={salaryMin} setSalaryMin={setSalaryMin}
+              salaryMax={salaryMax} setSalaryMax={setSalaryMax}
+              jobType={jobType} setJobType={setJobType}
+              jobMode={jobMode} setJobMode={setJobMode}
+              roleType={roleType} setRoleType={setRoleType}
+              experience={experience} setExperience={setExperience} 
+              fetchSearchData={fetchSearchData} setPopups={setPopups} />
+              <button
+                onClick={() => setPopups(false)}
+                className="absolute top-2 right-2 text-gray-600 hover:text-black"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+        )}
+
+        <button
+          onClick={() => setPopups(true)}
+          className="fixed ml-[320px] mt-[20px] text-xl px-2 py-2 bg-[#6300B3] text-white rounded-md"
+        >
+          <FaFilter />
+        </button>
+      </div>
+      <div className="flex md:mx-[10%] mx-[0%] mt-[0px]">
         <div className={`flex-auto hidden md:block`}> 
           <Filters 
           salaryMin={salaryMin} setSalaryMin={setSalaryMin}
@@ -127,6 +170,7 @@ function Jobs({ popup, setPopup, setApplicationId }) {
             <h2 className="text-3xl font-bold">Search Job</h2>
             <p className="font-medium text-gray-400 my-2">Search for your desired job matching your skills</p>
           </div>
+          
           <form onSubmit={fetchSearchData} className="flex bg-[#F7F7F7] p-2 rounded-md my-5">
             <input 
             className="bg-[#F7F7F7] flex-1 p-3 m-0 rounded-md border-none focus:outline-none focus:border-none" 
@@ -206,7 +250,7 @@ function Jobs({ popup, setPopup, setApplicationId }) {
           )}
         </div>
         <div className="flex-auto"></div>
-      </div>
+    </div>
     </div>
   )
 }
