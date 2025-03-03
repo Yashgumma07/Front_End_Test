@@ -148,7 +148,7 @@ function Jobs({ popup, setPopup, setApplicationId }) {
 
         <button
           onClick={() => setPopups(true)}
-          className="fixed ml-[320px] mt-[20px] text-xl px-2 py-2 bg-[#6300B3] text-white rounded-md"
+          className="fixed ml-[320px] mt-[20px] text-xl px-2 py-2 bg-[#9078e682] text-black rounded-md"
         >
           <FaFilter />
         </button>

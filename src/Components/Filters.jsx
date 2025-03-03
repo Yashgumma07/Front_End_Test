@@ -25,7 +25,7 @@ function Filters({
   return (
     <div className="min-h-screen">
       <div className="md:w-[335px] w-[250px] h-full">
-        <div className="flex justify-between mt-10 md:mt-0 py-6">
+        <div className="flex justify-between mt-0 py-6">
           <h3 className="text-2xl font-bold">Filters</h3>
           <p
             className="font-medium text-gray-400 clearBtn"
@@ -41,7 +41,7 @@ function Filters({
             Clear all
           </p>
         </div>
-        <div className="md:w-[335px] w-[250px] bg-slate-200 h-[400px] md:h-[500px] rounded-lg py-5 px-2 md:px-9">
+        <div className="md:w-[335px] w-[250px] bg-slate-200 h-[450px] md:h-[500px] rounded-lg py-5 px-2 md:px-9">
           <div className="relative h-full overflow-y-auto scroll-none">
             <form>
               {/* Salary Range */}
